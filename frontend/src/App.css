@@ -1,0 +1,221 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/antd/4.19.5/antd.min.css");
+
+* {
+  font-family: Avenir;
+}
+
+.bubble-1 {
+  position: absolute;
+  top: 84px;
+  left: -84px;
+  width: 324px;
+  height: 324px;
+  border-radius: 50%;
+  background-color: #f0aa86;
+}
+
+.bubble-2 {
+  position: absolute;
+  top: 84px;
+  left: 184px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f0aa86;
+}
+
+.bubble-3 {
+  position: absolute;
+  top: 124px;
+  left: 224px;
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background-color: #f0aa86;
+}
+
+.bubble-4 {
+  position: absolute;
+  bottom: 30px;
+  right: 70px;
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background-color: #f0aa86;
+}
+
+/* Components */
+
+.ce-avatar-status {
+  width: 12px !important;
+  height: 12px !important;
+}
+.ce-avatar {
+  color: #f0f0f0 !important;
+}
+
+.ce-default-button {
+  background-color: #f0aa86 !important;
+  border: none !important;
+  color: #f0f0f0 !important;
+}
+.ce-danger-button {
+  background-color: #f0aa86 !important;
+  border: none !important;
+  color: #f0f0f0 !important;
+}
+.ce-autocomplete-input {
+  background-color: #5c4e80 !important;
+  border: none !important;
+  color: #f0f0f0 !important;
+}
+.ce-autocomplete-input::placeholder {
+  color: #f0f0f0 !important;
+}
+
+/* Chat List */
+
+.search-bar {
+  background-color: #5c4e80;
+  color: white;
+  border: none;
+  margin: 6px 12px 6px 12px;
+  outline: none;
+  width: calc(100% - 24px);
+}
+.search-bar::placeholder {
+  color: white;
+}
+.ce-chat-list-column {
+  border: none !important;
+}
+.ce-chat-list {
+  background-color: #4e426d !important;
+}
+.ce-chat-form {
+  background-color: #4e426d !important;
+  color: #f0f0f0 !important;
+}
+.ce-chat-form-input {
+  border: none !important;
+  background-color: #5c4e80 !important;
+  color: #f0f0f0 !important;
+}
+.ce-chat-form-input::placeholder {
+  color: #bfbfbf !important;
+}
+.ce-chat-card {
+  background-color: #5c4e80 !important;
+}
+.ce-active-chat-card {
+  border: 1px solid #3ec7b6 !important;
+}
+.ce-chat-card-title {
+  color: #f0f0f0 !important;
+}
+.ce-chat-card-unread {
+  background-color: #3ec7b6 !important;
+}
+.ce-chat-card-subtitle {
+  color: #bfbfbf !important;
+  font-weight: 500 !important;
+}
+.ce-chat-card-time-stamp {
+  color: #bfbfbf !important;
+  font-weight: 500 !important;
+}
+
+/* Chat Feed */
+
+.ch-chat-feed {
+  background-color: #4e426d !important;
+}
+.ce-chat-header {
+  background-color: #4e426d !important;
+  color: #f0f0f0 !important;
+}
+.ce-spinner {
+  filter: invert();
+}
+#ce-ice-breaker-gif {
+  max-width: 120px !important;
+  margin-top: 54px !important;
+}
+.ce-message-list {
+  background-color: #5c4e80 !important;
+  margin: 12px !important;
+  height: calc(100% - 156px) !important;
+  border-radius: 24px !important;
+}
+.ce-attachment-icon {
+  border: none !important;
+}
+#msg-textarea {
+  top: 4px !important;
+  left: 14px !important;
+  height: 32px !important;
+  padding: 5px 42px 4px 18px !important;
+  border-radius: 16px !important;
+  width: calc((100% - 24px) - 70px) !important;
+  font-size: 14px !important;
+}
+.ce-attachment-input {
+  left: -24px !important;
+}
+#ce-send-message-button {
+  left: -14px !important;
+  top: -8px !important;
+  background-color: #3ec7b6 !important;
+}
+.ce-message-date-text {
+  color: #f0f0f0 !important;
+}
+.ce-my-message-body {
+  background-color: #f0aa86 !important;
+}
+.ce-my-message-timestamp {
+  color: #f0aa86 !important;
+}
+.ce-their-message-body {
+  background-color: #4e426d !important;
+  color: #f0f0f0 !important;
+}
+.ce-their-message-timestamp {
+  color: #f0f0f0 !important;
+}
+.ce-their-message-sender-username {
+  color: #f0f0f0 !important;
+}
+
+/* Chat Settings */
+
+.ce-chat-settings-column {
+  border: none !important;
+}
+
+.ce-chat-settings {
+  background-color: #4e426d !important;
+}
+
+.ce-chat-settings-title {
+  color: #f0f0f0 !important;
+}
+.ce-dropdown {
+  border: none !important;
+  color: #f0f0f0 !important;
+}
+.ce-dropdown-label {
+  background-color: #4e426d !important;
+}
+
+.ce-chat-engine {
+  position: absolute !important;
+  top: calc(10vh + 64px) !important;
+  left: 10vw !important;
+  height: calc(80vh - 64px) !important;
+  width: 80vw !important;
+  border: 1px solid black !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+}
