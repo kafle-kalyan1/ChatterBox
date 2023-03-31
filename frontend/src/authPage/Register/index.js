@@ -4,6 +4,7 @@ import { Col, Row, Form, Input, Button, notification } from "antd";
 
 import { createUser } from "./createUser";
 import { Context } from "../../context";
+import axios from "axios";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -14,7 +15,7 @@ const Register = () => {
   const onSuccess = (r, values) => {
     setIsLoading(false);
     setError("");
-
+    console.log(r, values);
     const user = r.data;
     // Hashed password for Chat Engine
     user.hashed_password = user.password;
@@ -35,9 +36,34 @@ const Register = () => {
 
   const onFinish = (values) => {
     setIsLoading(true);
-    createUser(values, (r) => onSuccess(r, values), onError);
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:8000/users",
+    })
+      .then((res) => {
+        let emailAlreadyExists = false;
+        res.data.results.forEach((data) => {
+          if (data.email === values.email) {
+            emailAlreadyExists = true;
+          }
+        });
+  
+        if (emailAlreadyExists) {
+          notification.warn({
+            message: "Email already registered",
+            placement: "bottomLeft",
+          });
+          setIsLoading(false);
+        } else {
+          console.log(values);
+          createUser(values, (r) => onSuccess(r, values), onError);
+        }
+      })
+      .catch((res) => console.log("error: " + res.data));
   };
-
+  
+  
+  
   return (
     <Row
       style={{
@@ -98,7 +124,13 @@ const Register = () => {
           <Form.Item
             label="Email"
             name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+            rules={[
+              {
+                type: "email",
+                required: true,
+                message: "Please input your valid email!",
+              },
+            ]}
           >
             <Input placeholder="Email" />
           </Form.Item>
@@ -106,7 +138,13 @@ const Register = () => {
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              {
+                required: true,
+                message: "Please input valid password!",
+                min: 6,
+              },
+            ]}
           >
             <Input.Password placeholder="Password" />
           </Form.Item>

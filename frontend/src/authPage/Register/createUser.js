@@ -10,5 +10,9 @@ export const createUser = (values, onSuccess, onError) => {
         placement: "bottomLeft",
       })
     })
-    .catch((e) => onError(e.response.data));
+    .catch((e) =>{ onError(e.response.data)
+    notification.error({
+      message: "Username already exists please log in or change your username",
+      placement: "bottomLeft",
+    })});
 };

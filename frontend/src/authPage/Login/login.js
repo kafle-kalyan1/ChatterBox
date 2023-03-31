@@ -16,7 +16,7 @@ export const login = (values, onSuccess, onError) => {
       });
     })
     .catch((e) => {onError(e.response.data)
-      notification.success({
+      notification.warning({
         message: "Something went wrong",
         placement: "bottomLeft",
       });
