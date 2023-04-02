@@ -33,6 +33,9 @@ function ChatsList() {
     showUsers();
   }, []);
 
+  function sendMessage(selectedUser){
+    console.log(selectedUser)
+  }
   return (
     <div className="chat-container">
       <div className="users-container">
@@ -77,7 +80,8 @@ function ChatsList() {
             </div>
             <div className="chat-input">
               <input type="text" placeholder="Type your message here..." />
-              <button>Send</button>
+              <button onClick={()=> sendMessage(selectedUser)}>Send</button>
+              
             </div>
           </div>
         ) : (

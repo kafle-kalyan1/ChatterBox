@@ -14,6 +14,8 @@ export const login = (values, onSuccess, onError) => {
         message: "Sucessfully logged in",
         placement: "bottomLeft",
       });
+      localStorage.setItem("users_data", values)
+
     })
     .catch((e) => {onError(e.response.data)
       notification.warning({
