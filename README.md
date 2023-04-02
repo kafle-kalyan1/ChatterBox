@@ -16,9 +16,11 @@ ChatterBox is a 1-on-1 chatting web app that allows users to send messages to ea
 
 1. Clone the repository: `git clone https://github.com/kafle-kalyan1/chatterbox.git`
 2. Navigate to the `backend` directory: `cd backend`
-3. Install the required Python packages: `pip install -r requirements.txt`
-4. Run database migrations: `python manage.py migrate`
-5. Start the Django development server: `python manage.py runserver`
+3. Create new virtual enviroment: `python -m venv env_name`
+4. Activate virtual enviroment: `env_name\Scripts\activate`
+4. Install the required Python packages: `pip install -r requirements.txt`
+5. Run database migrations: `python manage.py migrate`
+6. Start the Django development server: `python manage.py runserver`
 
 ### Frontend
 
@@ -42,3 +44,4 @@ The frontend settings can be configured in the `frontend/src/config.js` file. Yo
 2. Register a new account or log in with an existing one.
 3. Start a new chat to the user you want to chat with.
 4. Send messages in real-time using the chat interface.
+
