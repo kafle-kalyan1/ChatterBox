@@ -14,10 +14,8 @@ const ChatsPage = () => {
   } else {
     return (
       <div>
-        <Header userName={user.username} />
-        {console.log(user.username)}
-        {user.username}'s chats...
-        <ChatsList/>
+        <Header />
+        <ChatsList />
       </div>
     );
   }

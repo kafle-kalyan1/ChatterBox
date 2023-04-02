@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../context";
 import "./chat.css";
 
 function ChatsList() {
   const [users, setUsers] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
+  const { user } = useContext(Context);
 
-  function selectUser(user) {
-    setSelectedUser(user);
+  function selectUser(sel_user) {
+    setSelectedUser(sel_user);
   }
 
   function closeChat() {
@@ -15,13 +17,13 @@ function ChatsList() {
   }
 
   function showUsers() {
-    console.log("users");
+
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/users",
     })
       .then((res) => {
-        console.log(res.data.results);
+  
         setUsers(res.data.results);
       })
       .catch((err) => console.error(err));
@@ -37,22 +39,24 @@ function ChatsList() {
         <h1 className="chat-header">Chats</h1>
         {users !== null ? (
           <>
-            {users.map((user) => {
-              return (
-                <div
-                  className={`chat-user ${
-                    user.username === selectedUser ? "active" : ""
-                  }`}
-                  onClick={() => selectUser(user.username)}
-                  key={user.username}
-                >
-                  <img src={user.image} alt={user.username} />
-                  <div>
-                    <h1>{user.username}</h1>
-                    <p>Last message</p>
+            {users.map((all_user) => {
+              if (all_user.username !== user.username) {
+                return (
+                  <div
+                    className={`chat-user ${
+                      all_user.username === selectedUser ? "active" : ""
+                    }`}
+                    onClick={() => selectUser(all_user.username)}
+                    key={all_user.username}
+                  >
+                    <img src="https://www.amongusavatarcreator.com/assets/img/main/icon.png" alt={all_user.username} />
+                    <div>
+                      <h1>{all_user.username}</h1>
+                      <p>Last message</p>
+                    </div>
                   </div>
-                </div>
-              );
+                );
+              }
             })}
           </>
         ) : (

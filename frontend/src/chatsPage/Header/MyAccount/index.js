@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Modal, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 import EditAccount from "./UpdateAccount";
 import DeleteAccount from "./DeleteAccount";
+import { Context } from "../../../context";
 
-const MyAccount = (props) => {
+
+const MyAccount = () => {
   const [isVisible, setIsVisible] = useState(false);
-  {
-    console.log(`Props are:     ${props.userName}`);
-  }
+  const { user } = useContext(Context);
+
+
 
   return (
     <>
@@ -20,7 +22,8 @@ const MyAccount = (props) => {
         icon={<UserOutlined />}
         onClick={() => setIsVisible(true)}
       >
-        {props.userName}
+        
+        {user.username}
       </Menu.Item>
 
       <Modal
@@ -36,8 +39,6 @@ const MyAccount = (props) => {
     </>
   );
 };
-MyAccount.defaultProps = {
-  userName: "User-Default",
-};
+
 
 export default MyAccount;
