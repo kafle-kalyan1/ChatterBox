@@ -1,23 +1,18 @@
-import { useContext } from "react";
+const ws = new WebSocket('ws://localhost:8000/ws/sc');
 
-import { Context } from "../context";
-
-import Header from "./Header";
-
-const ChatsPage = () => {
-  const { user } = useContext(Context);
-
-  if (!user) {
-    return <div />;
-  } else {
-    return (
-      <div>
-        <Header userName={user.username} />
-        {console.log(user.username)}
-        {user.username}'s chats...
-      </div>
-    );
-  }
+ws.onopen = (event) => {
+  console.log('WebSocket connection established.');
+  ws.send('Hello, world!');  
 };
 
-export default ChatsPage;
+ws.onmessage = (event) => {
+  console.log(event.data);
+};
+
+ws.onclose = (event) => {
+  console.log('WebSocket connection closed.');
+};
+
+ws.onerror = (event) => {
+  console.error('WebSocket error:', event);
+};

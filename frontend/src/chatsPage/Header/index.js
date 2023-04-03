@@ -12,6 +12,7 @@ const Header = () => {
 
   const onLogout = () => {
     setUser(undefined);
+    localStorage.removeItem("users_data")
     notification.success({
       message: "See you later!",
       placement: "bottomLeft",

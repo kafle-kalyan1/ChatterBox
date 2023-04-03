@@ -10,7 +10,10 @@ class s_consumer(SyncConsumer):
       print("Connected...")
       
    def websocket_receive(self, event):
-      print("Recived...",event['text'])
+      self.send({
+         'type': 'websocket.send',
+         'text': event['text'] 
+      })
       
    def websocket_disconnect(self, event):
       print("Disconnect...")
@@ -26,6 +29,10 @@ class a_consumer(AsyncConsumer):
       
    async def websocket_receive(self, event):
       print("Recived...",event)
+      await self.send({
+         'type': 'websocket.send',
+         'text': "Oaaaaa" 
+      })
       
    async def websocket_disconnect(self, event):
       print("Disconnect...")

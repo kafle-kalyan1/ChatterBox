@@ -1,3 +1,5 @@
+
+// login.js
 import axios from "axios";
 import { notification } from 'antd';
 
@@ -9,19 +11,26 @@ export const login = (values, onSuccess, onError) => {
     .get("http://127.0.0.1:8000/users/me/", {
       headers: { Authorization: `Basic ${token}` },
     })
-    .then((r) => {onSuccess(r)
+    .then((response) => {
+      const user_data = response.data;
+      onSuccess(response);
+
       notification.success({
-        message: "Sucessfully logged in",
+        message: "Successfully logged in",
         placement: "bottomLeft",
       });
-      localStorage.setItem("users_data", values)
-
+      
+      localStorage.setItem("users_data", JSON.stringify(user_data)); // store the entire user data object
     })
-    .catch((e) => {onError(e.response.data)
+    .catch((error) => {
+      onError(error.response.data);
+
       notification.warning({
         message: "Something went wrong",
         placement: "bottomLeft",
       });
-    
     });
 };
+
+
+

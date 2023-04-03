@@ -6,13 +6,24 @@ export const Context = createContext();
 export const ContextProvider = (props) => {
   const [user, setUser] = useState(undefined);
   const value = { user, setUser };
-  const local_user = (localStorage.getItem("users_data"));
 
-  if (local_user !== null) {
-    setUser(local_user.username);
-  } else {
-    console.log("No user data found in local storage");
-  }
+  // Retrieve users_data from local storage and parse it to an object
+  // const local_user = JSON.parse(localStorage.getItem("users_data"));
+
+  // if (local_user) {
+  //   axios({
+  //     method: "get",
+  //     url: "http://127.0.0.1:8000/users",
+  //   })
+  //     .then((response) => {
+  //       response.data.results.forEach((user_data) => {
+  //         if (local_user.username === user_data.username) {
+  //           setUser(user_data); // set the entire user data object as the user
+  //         }
+  //       });
+  //     })
+  //     .catch((e) => console.log(e));
+  // }
 
   return <Context.Provider value={value}>{props.children}</Context.Provider>;
 };
