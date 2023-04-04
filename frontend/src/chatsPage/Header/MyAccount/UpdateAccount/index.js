@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import { Col, Row, Button, Form, Input, notification } from "antd";
+import { Col, Row, Button, Form, Input, } from "antd";
 
 import { updateUser } from "./updateUser";
 import { Context } from "../../../../context";
@@ -22,10 +22,7 @@ const EditAccount = (props) => {
     user.plaintext_password = values.password;
     setUser(user);
 
-    notification.success({
-      message: "Account changed",
-      placement: "bottomLeft",
-    });
+   
     props.onComplete();
   };
 
@@ -42,6 +39,7 @@ const EditAccount = (props) => {
   return (
     <Form
       name="register"
+      defaultValue={"saada"}
       labelCol={{ span: 0 }}
       wrapperCol={{ span: 24 }}
       initialValues={{ remember: true }}
@@ -50,11 +48,12 @@ const EditAccount = (props) => {
       style={{ paddingTop: "18px" }}
     >
       <Form.Item
+      
         label="Username"
         name="username"
         rules={[{ required: true, message: "Please input your username!" }]}
       >
-        <Input placeholder="Username" />
+        <Input defaultValue={user.username} placeholder="Username" />
       </Form.Item>
       <Row gutter={12}>
         <Col xs={24} sm={12}>
@@ -65,7 +64,7 @@ const EditAccount = (props) => {
               { required: true, message: "Please input your first name!" },
             ]}
           >
-            <Input placeholder="First name" />
+            <Input defaultValue={user.first_name} placeholder="First name" />
           </Form.Item>
         </Col>
         <Col xs={24} sm={12}>
@@ -76,7 +75,7 @@ const EditAccount = (props) => {
               { required: true, message: "Please input your last name!" },
             ]}
           >
-            <Input placeholder="Last name" />
+            <Input defaultValue={user.last_name} placeholder="Last name" />
           </Form.Item>
         </Col>
       </Row>
@@ -86,7 +85,7 @@ const EditAccount = (props) => {
         name="email"
         rules={[{ required: true, message: "Please input your email!" }]}
       >
-        <Input placeholder="Email" />
+        <Input placeholder="Email" defaultValue={user.email} />
       </Form.Item>
 
       <Form.Item
@@ -103,7 +102,7 @@ const EditAccount = (props) => {
         </Button>
       </Form.Item>
 
-      <div style={{ color: "#f5222d" }}>{error.toString()}</div>
+      <div style={{ color: "#f5222d" }}></div>
     </Form>
   );
 };

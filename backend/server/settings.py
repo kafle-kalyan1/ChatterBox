@@ -63,9 +63,16 @@ TEMPLATES = [
         },
     },
 ]
-
-# WSGI_APPLICATION = 'server.wsgi.application'
 ASGI_APPLICATION = 'server.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -74,14 +81,13 @@ ASGI_APPLICATION = 'server.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chatterbox', # the database name
-        'USER': 'root', # the username
-        'PASSWORD': '', # the password
-        'HOST': 'localhost', # the host server name
-        'PORT': '3306', # the port number
+        'NAME': 'chatterbox',  # the database name
+        'USER': 'root',  # the username
+        'PASSWORD': '',  # the password
+        'HOST': 'localhost',  # the host server name
+        'PORT': '3306',  # the port number
     }
 }
-
 
 
 # Password validation

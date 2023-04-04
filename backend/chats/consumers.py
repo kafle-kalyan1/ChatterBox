@@ -1,40 +1,37 @@
-from channels.consumer import SyncConsumer,AsyncConsumer, StopConsumer
+import asyncio
+import json
+from channels.generic.websocket import AsyncWebsocketConsumer
 
+class a_consumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+        print("WebSocket connection established.")
 
-class s_consumer(SyncConsumer):
-   
-   def websocket_connect(self, event):
-      self.send({
-         'type': 'websocket.accept',
-      })
-      print("Connected...")
-      
-   def websocket_receive(self, event):
-      self.send({
-         'type': 'websocket.send',
-         'text': event['text'] 
-      })
-      
-   def websocket_disconnect(self, event):
-      print("Disconnect...")
-      raise StopConsumer()
+    async def disconnect(self, close_code):
+        print("WebSocket connection closed.",close_code)
 
-class a_consumer(AsyncConsumer):
-   
-   async def websocket_connect(self, event):
-      await self.send({
-         'type': 'websocket.accept',
-      })
-      print("Connected...")
-      
-   async def websocket_receive(self, event):
-      print("Recived...",event)
-      await self.send({
-         'type': 'websocket.send',
-         'text': "Oaaaaa" 
-      })
-      
-   async def websocket_disconnect(self, event):
-      print("Disconnect...")
-      raise StopConsumer()
-      
+    async def receive(self, text_data):
+        data = json.loads(text_data)
+        message = data['message']
+        receiver = data['receiver']
+        print(f"Message received: {message} for {receiver}")
+        
+        # Send the message through the channel layer to the receiver
+        await self.channel_layer.group_send(
+            receiver,  # Group name is the receiver's name
+            {
+                'type': 'chat_message',
+                'message': message,
+               #  'sender': self.scope['user'].username  
+            }
+        )
+
+    async def chat_message(self, event):
+        message = event['message']
+        sender = event['sender']
+        print(f"Message sent: {message} from {sender}")
+        response = {
+            'type': 'websocket.send',
+            'text': message
+        }
+        await self.send(json.dumps(response))

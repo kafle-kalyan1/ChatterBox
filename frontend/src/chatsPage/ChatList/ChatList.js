@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context";
 import "./chat.css";
+import Send_message from "../messages/Send_message";
 
 function ChatsList() {
+  const [message, setMessage] = useState("");
   const [users, setUsers] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const { user } = useContext(Context);
@@ -17,13 +19,11 @@ function ChatsList() {
   }
 
   function showUsers() {
-
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/users",
     })
       .then((res) => {
-  
         setUsers(res.data.results);
       })
       .catch((err) => console.error(err));
@@ -33,9 +33,7 @@ function ChatsList() {
     showUsers();
   }, []);
 
-  function sendMessage(selectedUser){
-    console.log(selectedUser)
-  }
+
   return (
     <div className="chat-container">
       <div className="users-container">
@@ -52,7 +50,10 @@ function ChatsList() {
                     onClick={() => selectUser(all_user.username)}
                     key={all_user.username}
                   >
-                    <img src="https://www.amongusavatarcreator.com/assets/img/main/icon.png" alt={all_user.username} />
+                    <img
+                      src="https://www.amongusavatarcreator.com/assets/img/main/icon.png"
+                      alt={all_user.username}
+                    />
                     <div>
                       <h1>{all_user.username}</h1>
                       <p>Last message</p>
@@ -79,9 +80,13 @@ function ChatsList() {
               {/* display the chat history for the selected user here */}
             </div>
             <div className="chat-input">
-              <input type="text" placeholder="Type your message here..." />
-              <button onClick={()=> sendMessage(selectedUser)}>Send</button>
-              
+              <input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                type="text"
+                placeholder="Type your message here..."
+              />
+              <Send_message setMessage={setMessage} message={message} selectedUser={selectedUser} />
             </div>
           </div>
         ) : (
