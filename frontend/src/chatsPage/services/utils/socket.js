@@ -1,11 +1,11 @@
-const ws = new WebSocket("ws://localhost:8000/ws/ac");
+const ws = new WebSocket("ws://localhost:8000/ws/ac/");
 
 ws.onopen = (event) => {
   console.log("WebSocket connection established.");
 };
 
 ws.onmessage = (event) => {
-  console.log(event.data);
+  console.log("Received message:", event.data);
 };
 
 ws.onclose = (event) => {
@@ -16,8 +16,8 @@ ws.onerror = (event) => {
   console.error("WebSocket error:", event);
 };
 
-function sendMessage(message) {
-  ws.send(JSON.stringify(message));
+function sendMessage(data) {
+  ws.send(JSON.stringify(data));
 }
 
 export { sendMessage };
