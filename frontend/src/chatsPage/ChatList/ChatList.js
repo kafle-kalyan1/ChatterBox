@@ -80,12 +80,12 @@ function ChatsList() {
               {/* display the chat history for the selected user here */}
             </div>
             <div className="chat-input">
-              <input
+              {/* <input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 type="text"
                 placeholder="Type your message here..."
-              />
+              /> */}
               <Send_message setMessage={setMessage} message={message} selectedUser={selectedUser} />
             </div>
           </div>
