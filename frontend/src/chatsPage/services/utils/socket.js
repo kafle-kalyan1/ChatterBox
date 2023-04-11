@@ -1,23 +1,26 @@
-const ws = new WebSocket("ws://localhost:8000/ws/ac/");
+// const socket = new WebSocket(`ws://localhost:8000/ws/${sender_username}/${receiver_username}/`);
+// socket.onopen = (event) => {
+//   console.log('WebSocket connection established.');
+// };
 
-ws.onopen = (event) => {
-  console.log("WebSocket connection established.");
-};
+// socket.onmessage = (event) => {
+//   console.log('Received message:', event.data);
+//   // You can update your UI here with the received message
+// };
 
-ws.onmessage = (event) => {
-  console.log("Received message:", event.data);
-};
+// socket.onclose = (event) => {
+//   console.log('WebSocket connection closed.');
+// };
 
-ws.onclose = (event) => {
-  console.log("WebSocket connection closed.");
-};
+// socket.onerror = (event) => {
+//   console.error('WebSocket error:', event);
+// };
 
-ws.onerror = (event) => {
-  console.error("WebSocket error:", event);
-};
+// function sendMessage(message) {
+//   const data = {
+//     message: message
+//   };
+//   socket.send(JSON.stringify(data));
+// }
 
-function sendMessage(data) {
-  ws.send(JSON.stringify(data));
-}
-
-export { sendMessage };
+// export { sendMessage };

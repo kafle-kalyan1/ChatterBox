@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { sendMessage } from "../services/utils/socket";
 import { Context } from "../../context";
 
 function Send_message({ selectedUser }) {
@@ -13,9 +12,29 @@ function Send_message({ selectedUser }) {
       receiver: selectedUser,
       message: message,
     };
-    sendMessage(messageObj);
-    setMessage("");
-    setMessages([...messages, messageObj]);
+    
+    // Create a new WebSocket connection
+    const ws = new WebSocket(`ws://localhost:8000/ws/${user.username}/${selectedUser}/`);
+
+    // Handle WebSocket events
+    ws.onopen = (event) => {
+      console.log("WebSocket connection established.");
+      ws.send(JSON.stringify(messageObj));
+      setMessage("");
+      setMessages([...messages, messageObj]);
+    };
+
+    ws.onmessage = (event) => {
+      console.log("Received message:", event.data);
+    };
+
+    ws.onclose = (event) => {
+      console.log("WebSocket connection closed.");
+    };
+
+    ws.onerror = (event) => {
+      console.error("WebSocket error:", event);
+    };
   };
 
   return (
