@@ -17,9 +17,7 @@ const Register = () => {
     setError("");
     console.log(r, values);
     const user = r.data;
-    // Hashed password for Chat Engine
     user.hashed_password = user.password;
-    // Plaintext password for Basic Auth
     user.plaintext_password = values.password;
     setUser(user);
 
