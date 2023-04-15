@@ -153,7 +153,7 @@ const Register = () => {
             </Button>
           </Form.Item>
 
-          <div style={{ color: "#f5222d" }}>{error.toString()}</div>
+          {/* <div style={{ color: "#f5222d" }}>{error.toString()}</div> */}
         </Form>
       </Col>
     </Row>

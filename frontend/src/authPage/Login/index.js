@@ -92,7 +92,7 @@ const Login = () => {
           </Form.Item>
         </Form>
 
-        <div style={{ color: "#f5222d" }}>{error}</div>
+        {/* <div style={{ color: "#f5222d" }}>{error}</div> */}
       </Col>
     </Row>
   );

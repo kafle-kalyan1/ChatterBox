@@ -26,7 +26,7 @@ export const login = (values, onSuccess, onError) => {
       onError(error.response.data);
 
       notification.warning({
-        message: "Something went wrong",
+        message: "Username or password incorrect",
         placement: "bottomLeft",
       });
     });
